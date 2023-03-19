@@ -1,5 +1,5 @@
 # My Restaurant List
-![screenshot](/screenshot/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Introduction
 Using Node.js and Express.js to build a restaurant list with a search function.
