@@ -15,3 +15,8 @@ Using Node.js and Express.js to build a restaurant list with a search function.
 - Run the commands `npm install` and `npm i nodemon`.
 - Execute the command `npm run dev`.
 - If it shows `Express is listening on localhost:3000`, then the server connection has been established successfully.
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a78cb0b28764d78e21cf6e3dffe74f7a59a17eeb
