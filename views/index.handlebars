@@ -32,34 +32,40 @@
       <div class="row">
           <div class="col-md-10 col-12 mx-auto">
             <div class="row row-cols-sm-3">
+            {{#if restaurants.length}}
               {{#each restaurants}}
-              <a href="/restaurants/{{this.id}}" class="text-secondary">
+                {{#with this}}
+              <a href="/restaurants/{{id}}" class="text-secondary">
                 <div class="card mb-3">
                   <img
                     class="card-img-top"
-                    src="{{this.image}}"
-                    alt="{{this.name}}"
+                    src="{{image}}"
+                    alt="{{name}}"
                     
                   />
                   <div class="card-body p-3">
-                    <h6 class="card-title mb-1">{{this.name}}</h6>
+                    <h6 class="card-title mb-1">{{name}}</h6>
 
                     <div class="restaurant-category mb-1">
                       <i class="fas fa-utensils pr-2"></i>
-                      {{this.category}}
+                      {{category}}
                     </div>
 
                     <span
                       class="badge rounded-pill bg-danger font-weight-normal"
                     >
-                      {{this.rating}}
+                      {{rating}}
                       <i class="fas fa-star fa-xs"></i>
                     </span>
 
                   </div>
                 </div>
               </a>
+                {{/with}}
               {{/each}}
+              {{else}}
+                <h1 class="text-center w-75 mx-auto">Can not find the "{{keyword}}".</h1>
+            {{/if}} 
             </div>
           </div>
       </div>

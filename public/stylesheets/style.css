@@ -80,13 +80,6 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.no-result {
-  font-size: 3em;
-  margin-top: 2em;
-  color: #333;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
 
 @media screen and (max-width: 992px) {
   .card img {
@@ -102,6 +95,6 @@ header {
 
 @media screen and (max-width: 575px) {
   .card img {
-    height: auto;
+    height: auto;  
   }
 }

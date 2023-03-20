@@ -25,17 +25,14 @@ app.get("/restaurants/:restaurant_id", (req, res) => {
   res.render("show", { restaurant: showRestaurant });
 });
 
-//若找不到給404並且回傳not-found page
+
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim();
   if (!keyword.length) return;
   const restaurants = restaurantList.results.filter((restaurant) =>
     restaurant.name.toLowerCase().includes(keyword)
   );
-  if (!restaurants.length) {
-    return res.status(404).render("not-found", { keyword });
-  }
-  res.render("index", { restaurants });
+  res.render("index", { restaurants, keyword });
 });
 
 
