@@ -25,8 +25,7 @@ app.get("/restaurants/:restaurant_id", (req, res) => {
   res.render("show", { restaurant: showRestaurant });
 });
 
-//若是找不到keyword則alert並返回上一頁
-//在node下使用js語法alert及window.history.back()達到相同效果
+//若找不到給404並且回傳not-found page
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim();
   if (!keyword.length) return;
@@ -34,14 +33,22 @@ app.get("/search", (req, res) => {
     restaurant.name.toLowerCase().includes(keyword)
   );
   if (!restaurants.length) {
+    return res.status(404).render("not-found", { keyword });
+  }
+  res.render("index", { restaurants });
+});
+
+
+//不建議如此使用因會造成前後端混淆
+//若是找不到keyword則alert並返回上一頁
+//在node下使用js語法alert及window.history.back()達到相同效果
+/*   if (!restaurants.length) {
     return res.send(
       "<script>alert('Can not find " +
         keyword +
         "');window.history.back();</script>"
     );
-  }
-  res.render("index", { restaurants: restaurants });
-});
+  } */
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`);
