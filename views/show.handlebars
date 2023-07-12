@@ -1,44 +1,131 @@
 <body>
-  <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-10 mx-auto">
+  <div class="container">
+    <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+    <div class="row">
+      <div class="col-12 col-md-10 mx-auto">
 
-      <p class="mb-1">
-        <span class="text-secondary">
-          <i class="fas fa-utensils pr-2"></i>
-          類別：
-        </span>
-        {{restaurant.category}}
-      </p>
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-utensils pr-2"></i>
+            Category:
+          </h4>
+          <p class="information-detail">{{restaurant.category}}</p>
+        </div>
 
-      <p class="mb-1">
-        <span class="text-secondary">
-          <i class="fas fa-map-marker-alt pr-2"></i>
-          地址：
-        </span>
-        {{restaurant.location}}
-        <a href="{{restaurant.google_map}}" class="text-secondary" target="_blank">
-          <i class="fas fa-location-arrow pr-2 fa-xs"></i>
-        </a>
-      </p>
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-map-marker-alt pr-2"></i>
+            Address:
+          </h4>
+          <p class="information-detail">{{restaurant.location}}</p>
+          <a
+            href="{{restaurant.google_map}}"
+            class="text-secondary"
+            target="_blank"
+          >
+            <i class="fas fa-location-arrow pr-2 fa-xs mb-4"></i>
+            View on Map
+          </a>
+        </div>
 
-      <p class="mb-1">
-        <span class="text-secondary">
-          <i class="fas fa-mobile-alt pr-2"></i>
-          電話：
-        </span>
-        {{restaurant.phone}}
-      </p>
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-mobile-alt pr-2"></i>
+            Phone:
+          </h4>
+          <p class="information-detail">{{restaurant.phone}}</p>
+        </div>
 
-      <p class="mb-5">
-        {{restaurant.description}}
-      </p>
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-map-marker-alt pr-2"></i>
+            Area:
+          </h4>
+          <p class="information-detail">{{restaurant.area}}</p>
+        </div>
 
-      <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}" style="max-width: 600px;">
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-chair pr-2"></i>
+            Seating Capacity:
+          </h4>
+          <p class="information-detail">{{restaurant.seating_capacity}}</p>
+        </div>
+
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-store pr-2"></i>
+            Restaurant Style:
+          </h4>
+          <p class="information-detail">{{restaurant.restaurant_style}}</p>
+        </div>
+
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-check-circle pr-2"></i>
+            Online Reservation:
+          </h4>
+          <p class="information-detail">{{restaurant.online_reservation}}</p>
+        </div>
+
+        <div class="mb-4 border-line">
+          <h4 class="information">
+            <i class="fas fa-credit-card pr-2"></i>
+            Payment Methods:
+          </h4>
+          <ul class="list-unstyled information-detail">
+            {{#each restaurant.payment_methods}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <img
+          class="rounded mx-auto d-block img-fluid mb-4"
+          src="{{restaurant.image}}"
+          alt="{{restaurant.name}}"
+          style="max-width: 500px;max-height: 500px"
+        />
+      </div>
+    </div>
+  </div>
+
+<div class="container my-5">
+  <h2 class="nearby-title mt-6 fw-bold">Nearby Restaurants</h2>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-10 col-12 mx-auto">
+        <div class="row row-cols-sm-3">
+          <!-- 顯示推薦餐廳 -->
+          {{#each restaurants}}
+          {{#with this}}
+          <a href="/restaurants/{{name}}" class="text-secondary">
+            <div class="card mb-3">
+              <img class="card-img-top" src="{{image}}" alt="{{name}}" />
+              <div class="card-body p-3">
+                <h6 class="card-title mb-1">{{name}}</h6>
+                <div class="restaurant-category mb-1">
+                  <i class="fas fa-utensils pr-2"></i>
+                  {{category}}
+                </div>
+                <span class="badge rounded-pill bg-danger font-weight-normal">
+                  {{rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
+              </div>
+            </div>
+          </a>
+          {{/with}}
+          {{/each}}
+          <!-- 顯示推薦餐廳結束 -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
-  
-</body>
-</html>

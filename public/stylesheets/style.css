@@ -10,6 +10,42 @@ header {
   color: #226089;
 }
 
+.border-line {
+  border-bottom: 1px solid #4592af;
+}
+
+.information {
+  font-family: "AvenirNext-Medium", "Helvetica Neue Medium", sans-serif;
+  color: #4592af;
+}
+
+.information-detail {
+  font-family: "AvenirNext-Medium", "Helvetica Neue Medium", sans-serif;
+  font-size: 1.25rem;
+  color: #bd2333;
+  font-weight: 600;
+}
+
+.nearby-title {
+  position: relative;
+}
+
+.nearby-title::before {
+  background: #bd2333;
+  position: absolute;
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  top: -22;
+  left: 0;
+}
+
+.image {
+  background-image: url(../../screenshot/footer-img.jpg);
+  background-position: center center;
+}
+
 .banner {
   position: relative;
   z-index: -1;
@@ -80,7 +116,6 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-
 @media screen and (max-width: 992px) {
   .card img {
     height: 115px;
@@ -95,6 +130,6 @@ header {
 
 @media screen and (max-width: 575px) {
   .card img {
-    height: auto;  
+    display: grid;
   }
 }
