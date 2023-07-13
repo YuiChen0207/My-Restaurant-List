@@ -1,6 +1,6 @@
 {
   "name": "my-restaurant-list",
-    "homepage": "https://YuiChen0207.github.io/My-Restaurant-List/",
+  "homepage": "https://YuiChen0207.github.io/My-Restaurant-List/",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,8 +8,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d docs"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,8 @@
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
   }
 }
