@@ -3,19 +3,30 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
 const port = 3000;
-
 const generateRestaurants = require("./Chance");
-const restaurantList = generateRestaurants(12);
+const restaurantList = generateRestaurants(50);
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+const handlebarsOptions = {
+  helpers: {
+    eq: function (a, b) {
+      return a === b;
+    },
+  },
+};
+
+app.engine(
+  "handlebars",
+  exphbs({ defaultLayout: "main", ...handlebarsOptions })
+);
+
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+app.get("/restaurants/page/:page", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://api.pexels.com/v1/search?query=restaurant&per_page=12",
+      "https://api.pexels.com/v1/search?query=restaurant&per_page=50",
       {
         headers: {
           Authorization:
@@ -25,45 +36,25 @@ app.get("/", async (req, res) => {
     );
     const photos = response.data.photos;
 
-    // 分頁參數
-    const page = parseInt(req.query.page) || 1;
-    const perPage = 12;
-
-    // 計算餐廳範圍
-    const startIndex = (page - 1) * perPage;
-    const endIndex = startIndex + perPage;
-
-    // 擷取需要顯示的餐廳
-    const displayedRestaurants = restaurantList.slice(startIndex, endIndex);
-
-    displayedRestaurants.forEach((restaurant, index) => {
+    restaurantList.forEach((restaurant, index) => {
       restaurant.image = photos[index % photos.length].src.original;
     });
 
-    const totalPages = Math.ceil(restaurantList.length / perPage);
+    const page = parseInt(req.params.page) || 1;
+    console.log(page);
+    const perPage = 12;
+    const startIndex = (page - 1) * perPage;
+    const endIndex = startIndex + perPage;
+    const displayedRestaurants = restaurantList.slice(startIndex, endIndex);
 
     res.render("index", {
       restaurants: displayedRestaurants,
+      currentPage: page,
     });
   } catch (error) {
     console.error("發生錯誤:", error);
     res.render("index", { restaurants: restaurantList });
   }
-});
-
-app.get("/restaurants/page/:page", (req, res) => {
-  const page = parseInt(req.params.page) || 1;
-  const perPage = 12;
-  const startIndex = (page - 1) * perPage;
-  const endIndex = startIndex + perPage;
-  const displayedRestaurants = restaurantList.slice(startIndex, endIndex);
-  console.log(page);
-
-  res.render("index", {
-    restaurants: displayedRestaurants,
-    currentPage: page,
-    totalPages: Math.ceil(restaurantList.length / perPage),
-  });
 });
 
 app.get("/restaurants/:restaurant_name", async (req, res) => {
@@ -72,9 +63,14 @@ app.get("/restaurants/:restaurant_name", async (req, res) => {
     (restaurant) => restaurant.name === restaurantName
   );
 
+  const slicedRestaurants = restaurantList
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
+
   res.render("show", {
     restaurant: showRestaurant,
     restaurants: restaurantList,
+    slicedRestaurants,
   });
 });
 

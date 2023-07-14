@@ -14,6 +14,13 @@ const generateRestaurants = (count) => {
         "Japanese",
         "Italian",
         "American",
+        "Chinese",
+        "Mexican",
+        "Indian",
+        "French",
+        "Thai",
+        "Greek",
+        "Spanish",
       ]),
       image: chance.url({ domain: "example.com" }),
       location: chance.address(),
@@ -23,7 +30,7 @@ const generateRestaurants = (count) => {
       area: chance.city(),
       seating_capacity: chance.integer({ min: 20, max: 100 }),
       restaurant_style: chance.pickone(["Traditional", "Modern", "Romantic"]),
-      online_reservation: chance.bool(),
+      online_reservation: chance.pickone(["Yes", "No"]),
       payment_methods: chance.pickset(
         ["Cash", "Credit Card", "Mobile Payment"],
         chance.integer({ min: 1, max: 3 })
