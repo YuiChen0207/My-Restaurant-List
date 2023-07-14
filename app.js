@@ -44,13 +44,26 @@ app.get("/", async (req, res) => {
 
     res.render("index", {
       restaurants: displayedRestaurants,
-      currentPage: page,
-      totalPages: totalPages,
     });
   } catch (error) {
     console.error("發生錯誤:", error);
     res.render("index", { restaurants: restaurantList });
   }
+});
+
+app.get("/restaurants/page/:page", (req, res) => {
+  const page = parseInt(req.params.page) || 1;
+  const perPage = 12;
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  const displayedRestaurants = restaurantList.slice(startIndex, endIndex);
+  console.log(page);
+
+  res.render("index", {
+    restaurants: displayedRestaurants,
+    currentPage: page,
+    totalPages: Math.ceil(restaurantList.length / perPage),
+  });
 });
 
 app.get("/restaurants/:restaurant_name", async (req, res) => {
@@ -68,8 +81,11 @@ app.get("/restaurants/:restaurant_name", async (req, res) => {
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim();
   if (!keyword.length) return;
-  const restaurants = restaurantList.filter((restaurant) =>
-    restaurant.name.toLowerCase().includes(keyword)
+
+  const restaurants = restaurantList.filter(
+    (restaurant) =>
+      restaurant.name.toLowerCase().includes(keyword) ||
+      restaurant.category.toLowerCase().includes(keyword)
   );
   res.render("index", { restaurants, keyword });
 });

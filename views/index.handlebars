@@ -9,7 +9,7 @@
             type="text"
             name="keyword"
             class="form-control"
-            placeholder="Enter a restaurant"
+            placeholder="Enter restaurant or category"
             aria-label="Restaurant Name..."
             value=""
             aria-describedby="search-button"
@@ -60,33 +60,20 @@
     </div>
   </div>
 
+  <!--pagination-->
   <ul class="pagination justify-content-center my-5">
-    <li class="page-item me-2">
-      <a
-        class="btn btn-outline-secondary"
-        href="/restaurants/{{currentPage}}"
-        aria-label="Previous"
-      >
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
     <li class="page-item me-2"><a
         class="btn btn-outline-secondary active"
-        href="/restaurants/{{currentPage}}"
+        href="/restaurants/page/{{currentPage}}"
       >1</a></li>
     <li class="page-item me-2"><a
         class="btn btn-outline-secondary"
-        href="/restaurants/{{currentPage}}"
+        href="/restaurants/page/{{currentPage}}"
       >2</a></li>
     <li class="page-item me-2"><a
         class="btn btn-outline-secondary"
-        href="/restaurants/{{currentPage}}"
+        href="/restaurants/page/{{currentPage}}"
       >3</a></li>
-    <li class="page-item">
-      <a class="btn btn-outline-secondary" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
   </ul>
 </div>
 
@@ -95,6 +82,7 @@
   <img
     src="https://guide.michelin.com/assets/images/home/footer-img.jpg"
     class="d-inline-block align-top mt-5 w-100"
+    style="filter: brightness(0.5);"
     alt="好。吃"
   />
   <div class="position-absolute top-50 start-50 translate-middle">

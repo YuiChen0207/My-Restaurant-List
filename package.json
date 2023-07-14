@@ -1,16 +1,12 @@
 {
   "name": "my-restaurant-list",
-  "homepage": "https://YuiChen0207.github.io/My-Restaurant-List/",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d docs"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

@@ -3,10 +3,14 @@ header {
 }
 
 .navbar .navbar-brand {
+  padding: 10px;
   color: #4592af;
+  transition: all .3s ease-in;
 }
 
 .navbar .navbar-brand:hover {
+  background-color: #dfdddd;
+  border-radius: 10px;
   color: #226089;
 }
 
@@ -54,7 +58,7 @@ header {
   background: #dddddd center center
     url("https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg");
   background-size: cover;
-  filter: blur(3px);
+  filter: brightness(0.3);
 }
 
 .search-bar .search-bar-outer {
