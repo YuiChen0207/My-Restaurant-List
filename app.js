@@ -1,6 +1,7 @@
 const axios = require("axios");
 const express = require("express");
 const exphbs = require("express-handlebars");
+
 const app = express();
 const port = 3000;
 const generateRestaurants = require("./Chance");
@@ -20,8 +21,35 @@ app.engine(
 );
 
 app.set("view engine", "handlebars");
-
 app.use(express.static("public"));
+
+app.get("/", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://api.pexels.com/v1/search?query=restaurant&per_page=50",
+      {
+        headers: {
+          Authorization:
+            "6zTmrjwyG61pg3BkA2Kosbkj4W3AH5yMsf6gOVcCUZ3yRyxzOVW53AKF",
+        },
+      }
+    );
+    const photos = response.data.photos;
+
+    restaurantList.forEach((restaurant, index) => {
+      restaurant.image = photos[index % photos.length].src.original;
+    });
+
+    const displayedRestaurants = restaurantList.slice(0, 13);
+    res.render("index", {
+      restaurants: displayedRestaurants,
+      currentPage: 1,
+    });
+  } catch (error) {
+    console.error("發生錯誤:", error);
+    res.render("index", { restaurants: displayedRestaurants });
+  }
+});
 
 app.get("/restaurants/page/:page", async (req, res) => {
   try {
@@ -40,8 +68,7 @@ app.get("/restaurants/page/:page", async (req, res) => {
       restaurant.image = photos[index % photos.length].src.original;
     });
 
-    const page = parseInt(req.params.page) || 1;
-    console.log(page);
+    const page = parseInt(req.params.page);
     const perPage = 12;
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
