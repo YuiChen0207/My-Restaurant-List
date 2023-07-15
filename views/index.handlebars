@@ -79,21 +79,29 @@
 
 <!-- Subscription Section -->
 <div class="mx-auto mt-5 position-relative">
-  <img src="https://guide.michelin.com/assets/images/home/footer-img.jpg" class="d-inline-block align-top mt-5 w-100"
+  <img src="https://guide.michelin.com/assets/images/home/footer-img.jpg" class="footer-image d-inline-block align-top mt-5 w-100"
     style="filter: brightness(0.5);" alt="好。吃" />
-  <div class="position-absolute top-50 start-50 translate-middle">
-    <p class="fs-4 fw-bold font-monospace" style="color:#4592af">
+  <div class="subscribe-section position-absolute top-50 start-50 translate-middle text-center">
+    <p class="footer-image-text fs-4 fw-bold font-monospace" style="color:#4592af">
       Be the first to get news and update about the STAR Guide
     </p>
-    <form action="">
+
+    <form action="/subscribe" method="POST">
       <div class="input-group mb-3">
         <input type="email" name="email" class="form-control p-3" placeholder="Your Email" aria-label="Your Email"
           aria-describedby="button-addon2" />
-        <button class="btn btn-danger p-3" type="button" id="button-addon2">
+        <button class="btn btn-danger p-3" type="submit" id="button-addon2">
           Subscribe
         </button>
       </div>
     </form>
+
+    {{#if subscriptionStatus}}
+    <script>
+      alert("{{subscriptionStatus}}");
+      window.location.href = "/";
+    </script>
+    {{/if}}
   </div>
 </div>
 
@@ -102,15 +110,15 @@
   <div class="p-5 text-center">
     <h4 class="fs-4 fw-bold font-monospace">Follow us</h4>
     <div class="mt-4">
-      <a href="#">
+      <a href="https://www.instagram.com" target="_blank">
         <img class="m-2" width="38" height="38"
           src="https://guide.michelin.com/assets/images/social-network/instagram-382x.png" alt="ins" />
       </a>
-      <a href="#">
+      <a href="https://www.youtube.com" target="_blank">
         <img class="m-2" width="38" height="38"
           src="https://guide.michelin.com/assets/images/social-network/youtube-38.svg" alt="youtube" />
       </a>
-      <a href="#">
+      <a href="https://www.facebook.com" target="_blank">
         <img class="m-2" width="38" height="38"
           src="https://guide.michelin.com/assets/images/social-network/facebook-38.svg" alt="facebook" />
       </a>

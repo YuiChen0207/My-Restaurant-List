@@ -5,7 +5,7 @@ header {
 .navbar .navbar-brand {
   padding: 10px;
   color: #4592af;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .navbar .navbar-brand:hover {
@@ -130,10 +130,31 @@ header {
   .restaurant-show-title {
     font-size: 2rem;
   }
+  .navbar-nav {
+    flex-direction: row;
+  }
+  .banner-text {
+    font-size: 21px;
+  }
+  .subscribe-section {
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 575px) {
   .card img {
     display: grid;
+  }
+  .copyright {
+    font-size: 12px;
+  }
+  .subscribe-section {
+    height: 46%;
+  }
+  .footer-image {
+    height: 38%;
+  }
+  .navbar-text {
+    font-size: 12px;
   }
 }
